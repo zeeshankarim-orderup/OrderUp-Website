@@ -47,5 +47,3 @@ next-env.d.ts
 /outputs/
 /work/
 
-# Local Sites hosting configuration (deployment uses Vercel)
-/.openai/
