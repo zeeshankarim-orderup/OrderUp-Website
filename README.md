@@ -49,3 +49,17 @@ git config --global --add safe.directory 'C:/Users/WinDows/Documents/ChatGPT/Ord
 ```
 
 Dependencies, build output, environment files, local tool state, and Sites hosting configuration are ignored by Git. The older Sites/Cloudflare starter helpers remain in the source but are not used by the Next.js build or Vercel deployment.
+
+## Public support page and SMTP
+
+- `/support` returns the Arabic support page directly with HTTP 200; `/en/support/` is the English version. Neither requires authentication.
+- A narrow proxy rewrite serves `/support` without a slash redirect, while preserving localized page trailing-slash redirects.
+- `/api/support/` GET issues a signed, expiring arithmetic challenge with an HttpOnly, SameSite cookie. POST accepts same-origin JSON only, validates all input with Zod, limits the body to 24 KB, checks a honeypot, validates the challenge and enforces bounded per-instance attempt/send limits.
+- Limits are best-effort per warm Vercel instance, not globally shared. For sustained abuse or higher traffic, add a Vercel Firewall rate-limit rule for `/api/support/` or a shared rate-limit store. Expiring signed challenges and origin/body checks remain active across instances.
+- Nodemailer runs only on the Node.js server. It requires authenticated TLS (465) or STARTTLS (587), with certificate verification. Credentials are never passed to client components or included in responses/logs.
+- Configure the server-only keys from `.env.example` in Vercel Production. Gmail needs a working app password and permission to send as support@orderup.sa. Vercel sensitive values cannot be pulled back locally; placeholders do not count as valid configuration.
+- From, recipient and Reply-To use support@orderup.sa. The validated customer email is included in the body so support staff can address their reply to the customer. No automated customer emails or arbitrary recipients are permitted.
+- Success is shown only after SMTP accepts the recipient; this does not guarantee inbox placement. Failure keeps the form content and displays the direct support email. No messages are stored in a website database.
+- Changes to SMTP variables require a new production deployment.
+
+Support validation/security tests: `node --experimental-strip-types --test tests/support.test.mjs`.
