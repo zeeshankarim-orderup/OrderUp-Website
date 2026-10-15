@@ -3,8 +3,8 @@ import {NextRequest, NextResponse} from 'next/server';
 export function proxy(request: NextRequest) {
  const {pathname} = request.nextUrl;
  // An exact public support URL that returns HTML with HTTP 200, not a redirect.
- if (pathname === '/support' || pathname === '/support/') {
-  const destination = new URL(request.url); destination.pathname = '/ar/support/';
+ if (['/support','/support/','/captain','/captain/'].includes(pathname)) {
+  const destination = new URL(request.url); destination.pathname = pathname.startsWith('/captain') ? '/ar/captain/' : '/ar/support/';
   return NextResponse.rewrite(destination);
  }
  // Preserve the existing trailing-slash convention for localized pages.
@@ -14,4 +14,4 @@ export function proxy(request: NextRequest) {
  }
  return NextResponse.next();
 }
-export const config = {matcher:['/support','/support/','/ar/:path*','/en/:path*']};
+export const config = {matcher:['/captain','/captain/','/support','/support/','/ar/:path*','/en/:path*']};

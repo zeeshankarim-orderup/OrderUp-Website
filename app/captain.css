@@ -1,0 +1,17 @@
+.captain-page{min-height:100svh;background:radial-gradient(ellipse at 50% 20%,var(--primary-light),transparent 65%),var(--background);padding:28px 24px 24px;display:flex;flex-direction:column;align-items:center}
+.captain-header{width:min(100%,1040px);display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:48px;font-size:14px;font-weight:600}
+.captain-logo{width:156px;height:auto;display:block;object-fit:contain}
+.captain-card{width:min(100%,560px);background:var(--surface);border:1px solid var(--border);border-radius:28px;padding:40px;text-align:center;box-shadow:0 20px 70px #102e310a}
+.captain-icon{display:grid;place-items:center;width:64px;height:64px;border-radius:20px;margin:0 auto 22px;background:var(--primary-soft);color:var(--primary-dark)}
+.captain-kicker{color:var(--primary-dark);font-size:12px;letter-spacing:2px;font-weight:700;margin:0 0 14px}
+.captain-card h1{font-size:clamp(30px,5vw,42px);line-height:1.25;letter-spacing:-1px;margin:0 0 18px}
+.captain-description{font-size:17px;line-height:1.8;color:var(--muted);margin:0 auto 30px;max-width:390px}
+.captain-stores{display:grid;gap:12px;text-align:start}
+.captain-stores a{display:flex;align-items:center;gap:16px;background:var(--dark);color:white;border-radius:14px;padding:18px 20px;min-height:78px;transition:background .15s}
+.captain-stores a:hover{background:var(--primary-dark)}
+.captain-stores a>span{flex:1}.captain-stores small{display:block;font-size:12px;margin-bottom:3px;color:#d7eeeb}.captain-stores strong{font-size:20px}
+.captain-note{font-size:13px;line-height:1.8;color:var(--muted);margin:24px 0 16px}
+.captain-support{font-size:14px;color:var(--primary-dark);text-decoration:underline;text-underline-offset:4px}
+.captain-footer{padding:28px 0 0;font-size:14px;color:var(--primary-dark)}
+@media(max-width:480px){.captain-page{padding:20px 16px}.captain-header{margin-bottom:30px}.captain-logo{width:132px}.captain-card{padding:30px 22px;border-radius:22px}.captain-card h1{letter-spacing:0}.captain-stores a{padding:16px}}
+@media(prefers-reduced-motion:reduce){.captain-stores a{transition:none}}

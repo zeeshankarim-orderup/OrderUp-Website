@@ -1,19 +1,22 @@
+import {CaptainPage} from '@/components/orderup/captain';
 import {SupportPage} from '@/components/orderup/support';
 import {PartnerPage} from '@/components/orderup/partners';
 import {Footer} from '@/components/orderup/landing';
 import {Wordmark} from '@/components/orderup/interactive';
 import {notFound} from 'next/navigation';
 
-const pages=['driver','providers','contact','careers','privacy','terms','support'];
+const pages=['driver','providers','contact','careers','privacy','terms','support','captain'];
 export function generateStaticParams(){return pages.map(info=>({info}))}
 export async function generateMetadata({params}:{params:Promise<{locale:string;info:string}>}){
  const {locale,info}=await params;const ar=locale==='ar';
+ if(info==='captain')return {title:ar?'انضم إلى OrderUp Captain':'Join OrderUp Captain',description:ar?'انضم إلى OrderUp واستعد لاستقبال طلبات المشاوير.':'Join OrderUp and get ready to receive ride requests.',robots:{index:true,follow:true},alternates:{canonical:ar?'/captain':'/en/captain/',languages:{ar:'/captain',en:'/en/captain/'}},openGraph:{title:'Join OrderUp Captain',description:'Join OrderUp and get ready to receive ride requests.',url:ar?'/captain':'/en/captain/',images:['/images/orderup-logo.png']},twitter:{card:'summary',title:'Join OrderUp Captain',description:'Join OrderUp and get ready to receive ride requests.',images:['/images/orderup-logo.png']}};
  if(info==='support')return {title:ar?'تواصل مع دعم OrderUp':'Contact OrderUp Support',description:ar?'تواصل مع دعم OrderUp للمساعدة في التطبيق والحساب والمدفوعات والمشاوير والطلبات.':'Contact OrderUp Support for app issues, account help, payments, rides and orders.',robots:{index:true,follow:true},alternates:{canonical:ar?'/support':'/en/support/',languages:{ar:'/support',en:'/en/support/'}},openGraph:{title:'OrderUp Support',url:ar?'/support':'/en/support/'}};
  const title=info==='driver'?(ar?'قد واكسب معنا | OrderUp Driver':'Drive and earn with us | OrderUp Driver'):info==='providers'?(ar?'طوّر أعمالك معنا | OrderUp':'Grow your service business | OrderUp'):`OrderUp — ${info}`;
  return {title,robots:{index:false,follow:true},alternates:{canonical:`/${locale}/${info}/`,languages:{en:`/en/${info}/`,ar:`/ar/${info}/`}}};
 }
 export default async function Info({params}:{params:Promise<{locale:string;info:string}>}){
  const {locale,info}=await params;if(!pages.includes(info))notFound();const ar=locale==='ar';const t=(en:string,arabic:string)=>ar?arabic:en;
+ if(info==='captain')return <CaptainPage ar={ar}/>;
  if(info==='support')return <SupportPage ar={ar}/>;
  if(info==='driver'||info==='providers')return <><PartnerPage ar={ar} kind={info}/><Footer ar={ar}/></>;
  const content:Record<string,[string,string,string]>={
