@@ -40,6 +40,8 @@ Official references: [Vercel build settings](https://vercel.com/docs/builds/conf
 
 Official app-store links are configured in `lib/orderup/config.ts`. Driver and provider apps each have separate iOS and Android fields under `partnerApps`. Empty links show a Coming soon notice. Confirmed incentive amounts and eligibility must be supplied before replacing the conditional bonus copy.
 
+Website download links use `AppLink` and the shared `DownloadProvider` to open a customer or Captain QR dialog without navigating away. Direct store buttons inside the dialog use the official URLs. QR assets are generated locally with `node scripts/generate-download-qr.mjs` and encode `https://orderup.sa/get-app/customer/` and `/get-app/driver/`. These routes redirect recognized phone user agents to the correct store; unknown devices return to the Arabic home page with the matching dialog open. The production domain is intentional so scanning a localhost preview works on a phone after deployment. Legacy `/en/download/` and `/ar/download/` URLs return to the same home-page dialog. Provider store links remain unpublished.
+
 ## Git ownership on Windows
 
 If Git reports dubious ownership in this checkout, trust only this exact project path from your normal Windows terminal:

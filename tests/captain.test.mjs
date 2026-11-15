@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {captainPlatform, captainStores} from '../lib/orderup/captain.ts';
+import {captainPlatform, captainStores, customerStores} from '../lib/orderup/captain.ts';
 
 const cases = [
  ['Android Chrome','Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 Chrome/130.0.0.0 Mobile Safari/537.36','Linux armv8l',5,'android'],
@@ -18,6 +18,8 @@ const cases = [
 ];
 for(const [name,ua,platform,touch,expected] of cases) test(name,()=>assert.equal(captainPlatform(ua,platform,touch),expected));
 test('destinations match the approved URLs exactly',()=>{
- assert.equal(captainStores.android,'https://play.google.com/store/apps/details?id=com.orderup.captain&hl=en');
+ assert.equal(captainStores.android,'https://play.google.com/store/apps/details?id=com.orderup.captain');
  assert.equal(captainStores.ios,'https://apps.apple.com/sa/app/orderup-captain-drive-earn/id6798597573');
+ assert.equal(customerStores.android,'https://play.google.com/store/apps/details?id=com.orderup.main');
+ assert.equal(customerStores.ios,'https://apps.apple.com/app/orderup-the-super-app/id6802653554');
 });

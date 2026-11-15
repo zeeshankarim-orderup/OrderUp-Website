@@ -9,6 +9,10 @@
   --color-ring: #1e9695;
 }
 :root {
+  --scrollbar-thumb: #829c97;
+  --scrollbar-track: #edf6f3;
+  --scrollbar-hover: #146e6d;
+  --scrollbar-active: #102f31;
   --primary: #1e9695;
   --primary-dark: #146e6d;
   --primary-light: #d7eeeb;
@@ -22,7 +26,17 @@
 }
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
+html{scrollbar-gutter:stable}
+*::-webkit-scrollbar{width:12px;height:12px}
+*::-webkit-scrollbar-track{background:var(--scrollbar-track)}
+*::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border:3px solid var(--scrollbar-track);border-radius:8px}
+*::-webkit-scrollbar-thumb:hover{background:var(--scrollbar-hover)}
+*::-webkit-scrollbar-thumb:active{background:var(--scrollbar-active)}
+@media(forced-colors:active){*{scrollbar-color:auto}}
+.button:active{filter:brightness(.9)}
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;

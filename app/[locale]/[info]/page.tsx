@@ -2,13 +2,14 @@ import {CaptainPage} from '@/components/orderup/captain';
 import {SupportPage} from '@/components/orderup/support';
 import {PartnerPage} from '@/components/orderup/partners';
 import {Footer} from '@/components/orderup/landing';
-import {Wordmark} from '@/components/orderup/interactive';
-import {notFound} from 'next/navigation';
+import {Navbar} from '@/components/orderup/interactive';
+import {notFound,redirect} from 'next/navigation';
 
-const pages=['driver','providers','contact','careers','privacy','terms','support','captain'];
+const pages=['driver','providers','contact','careers','privacy','terms','support','captain','download'];
 export function generateStaticParams(){return pages.map(info=>({info}))}
 export async function generateMetadata({params}:{params:Promise<{locale:string;info:string}>}){
  const {locale,info}=await params;const ar=locale==='ar';
+ if(info==='download')return {title:ar?'حمّل OrderUp':'Download OrderUp',description:ar?'حمّل تطبيق OrderUp لأندرويد وآيفون.':'Download the OrderUp customer app for Android and iPhone.',alternates:{canonical:ar?'/download':'/en/download/',languages:{ar:'/download',en:'/en/download/'}}};
  if(info==='captain')return {title:ar?'انضم إلى OrderUp Captain':'Join OrderUp Captain',description:ar?'انضم إلى OrderUp واستعد لاستقبال طلبات المشاوير.':'Join OrderUp and get ready to receive ride requests.',robots:{index:true,follow:true},alternates:{canonical:ar?'/captain':'/en/captain/',languages:{ar:'/captain',en:'/en/captain/'}},openGraph:{title:'Join OrderUp Captain',description:'Join OrderUp and get ready to receive ride requests.',url:ar?'/captain':'/en/captain/',images:['/images/orderup-logo.png']},twitter:{card:'summary',title:'Join OrderUp Captain',description:'Join OrderUp and get ready to receive ride requests.',images:['/images/orderup-logo.png']}};
  if(info==='support')return {title:ar?'تواصل مع دعم OrderUp':'Contact OrderUp Support',description:ar?'تواصل مع دعم OrderUp للمساعدة في التطبيق والحساب والمدفوعات والمشاوير والطلبات.':'Contact OrderUp Support for app issues, account help, payments, rides and orders.',robots:{index:true,follow:true},alternates:{canonical:ar?'/support':'/en/support/',languages:{ar:'/support',en:'/en/support/'}},openGraph:{title:'OrderUp Support',url:ar?'/support':'/en/support/'}};
  const title=info==='driver'?(ar?'قد واكسب معنا | OrderUp Driver':'Drive and earn with us | OrderUp Driver'):info==='providers'?(ar?'طوّر أعمالك معنا | OrderUp':'Grow your service business | OrderUp'):`OrderUp — ${info}`;
@@ -16,6 +17,7 @@ export async function generateMetadata({params}:{params:Promise<{locale:string;i
 }
 export default async function Info({params}:{params:Promise<{locale:string;info:string}>}){
  const {locale,info}=await params;if(!pages.includes(info))notFound();const ar=locale==='ar';const t=(en:string,arabic:string)=>ar?arabic:en;
+ if(info==='download')redirect(`/${locale}/?app=customer`);
  if(info==='captain')return <CaptainPage ar={ar}/>;
  if(info==='support')return <SupportPage ar={ar}/>;
  if(info==='driver'||info==='providers')return <><PartnerPage ar={ar} kind={info}/><Footer ar={ar}/></>;
@@ -26,5 +28,5 @@ export default async function Info({params}:{params:Promise<{locale:string;info:
  terms:[t('Terms & conditions','الشروط والأحكام'),t('The official OrderUp terms and conditions have not yet been provided for this website.','لم تُوفّر الشروط والأحكام الرسمية الخاصة بـ OrderUp لهذا الموقع بعد.'),t('Please review the terms shown in the app before booking a ride, service or delivery.','يرجى مراجعة الشروط المعروضة في التطبيق قبل حجز مشوار أو خدمة أو توصيل.')]
  };
  const [title,copy,note]=content[info];
- return <><main className="container info-page"><a href={`/${locale}/`} aria-label="OrderUp"><Wordmark/></a><div className="eyebrow">{t('MORE FOR YOUR EVERYDAY','كل ما تحتاجه ليومك')}</div><h1>{title}</h1><p>{copy}</p><div className="info-notice"><p>{note}</p>{info==='contact'&&<a className="inline-link" href={ar?'/support':'/en/support/'}>{t('Contact Support','تواصل مع الدعم')}</a>}</div><a className="inline-link" href={`/${locale}/`}>{t('Back to OrderUp','العودة إلى OrderUp')} →</a></main><Footer ar={ar}/></>
+ return <><Navbar ar={ar} page={info}/><main id="main" className="container info-page"><div className="eyebrow">{t('MORE FOR YOUR EVERYDAY','كل ما تحتاجه ليومك')}</div><h1>{title}</h1><p>{copy}</p><div className="info-notice"><p>{note}</p>{info==='contact'&&<a className="inline-link" href={ar?'/support':'/en/support/'}>{t('Contact Support','تواصل مع الدعم')}</a>}</div><a className="inline-link" href={`/${locale}/`}>{t('Back to OrderUp','العودة إلى OrderUp')} →</a></main><Footer ar={ar}/></>
 }
