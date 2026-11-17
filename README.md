@@ -65,3 +65,29 @@ Dependencies, build output, environment files, local tool state, and Sites hosti
 - Changes to SMTP variables require a new production deployment.
 
 Support validation/security tests: `node --experimental-strip-types --test tests/support.test.mjs`.
+
+
+## Marketplace and ticketing demonstration
+
+The website now presents Rides, Services and a ticketing preview in English and Arabic. Start at `/ar/` (default), `/en/`, or `/{locale}/tickets/`.
+
+The ticket catalog contains fictional data, not supplier inventory. Choose up to six tickets, continue to demo checkout, and use the sample email `demo@example.com` with the on-screen demo verification code `246810`. This is passwordless simulation, not real authentication. No email is sent, no card is collected, and no payment or valid admission ticket is issued. Demo account/history lives in sessionStorage in the current tab, can be reset, and is separate from the mobile apps. No Supabase project has been modified.
+
+- Research and decisions: `docs/marketplace-audit-and-strategy.md`
+- Live page evidence: `docs/live-site-audit-evidence.json`
+- Quality checks and browser-review gaps: `docs/marketplace-verification.md`
+- Visual and behavioral contracts: `DESIGN.md`, `UX-CONTRACT.md`
+- Normalized mock catalog / future repository boundary: `lib/ticketing/catalog.ts`
+- Demo state and validation: `lib/ticketing/demo.ts`
+- Photo sources: `public/events/SOURCES.txt`
+
+Validation:
+
+```powershell
+node --experimental-strip-types --test tests/ticketing.test.mjs tests/captain.test.mjs tests/support.test.mjs
+node node_modules/eslint/bin/eslint.js app components/orderup components/marketplace lib/orderup lib/ticketing components/ui/dialog.tsx
+node node_modules/next/dist/bin/next build
+node scripts/verify-marketplace.mjs
+```
+
+The final command starts a temporary production server on 127.0.0.1:3019 and closes it afterward. Demo routes are noindex and excluded from the sitemap. Live support and approved app-store redirect contracts are retained. Real sales still require provider/auth/payment integrations and official legal content; the Partner application's download URLs have not been supplied.

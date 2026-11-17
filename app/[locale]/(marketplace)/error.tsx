@@ -1,0 +1,3 @@
+'use client';
+import {useParams} from 'next/navigation';
+export default function ErrorPage({reset}:{error:Error;reset:()=>void}){const ar=useParams().locale==='ar';return <div className="market-empty"><h1>{ar?'تعذّر تحميل هذه الصفحة':'This page could not load'}</h1><p>{ar?'حاول مجددًا أو ارجع لاكتشاف الفعاليات. لم يتم تحصيل أي مبلغ.':'Retry or return to event discovery. No payment has been collected.'}</p><button className="market-button" onClick={reset}>{ar?'إعادة المحاولة':'Try again'}</button><a className="market-text-link" href={`/${ar?'ar':'en'}/tickets/`}>{ar?'اكتشف الفعاليات':'Explore events'}</a></div>}

@@ -37,7 +37,7 @@ export function DownloadProvider({ar,children}:{ar:boolean;children:ReactNode}){
  return <DownloadContext.Provider value={(value,element)=>{trigger.current=element||null;setAudience(value);}}>
   {children}
   <Dialog open={audience!==null} onOpenChange={open=>{if(!open){setAudience(null);const url=new URL(window.location.href);if(url.searchParams.has('app')){url.searchParams.delete('app');window.history.replaceState(null,'',url);}}}}>
-   <DialogContent className="app-download-dialog" showCloseButton={false} dir={ar?'rtl':'ltr'} onCloseAutoFocus={event=>{event.preventDefault();if(trigger.current?.isConnected)trigger.current.focus();else document.querySelector<HTMLButtonElement>('.header-menu')?.focus();}}>
+   <DialogContent layer="download" className="app-download-dialog" showCloseButton={false} dir={ar?'rtl':'ltr'} onCloseAutoFocus={event=>{event.preventDefault();if(trigger.current?.isConnected)trigger.current.focus();else document.querySelector<HTMLButtonElement>('.platform-menu-button, .market-menu-button')?.focus();}}>
     <DialogClose className="app-download-close" aria-label={t('Close download popup','إغلاق نافذة التحميل')}><X size={22}/></DialogClose>
     <div className="app-download-copy">
      <Image className="app-download-logo" src="/images/orderup-logo.png" alt="OrderUp" width={1329} height={405} sizes="150px"/>

@@ -3,13 +3,11 @@ import {ArrowUpRight,ArrowRight,CarFront,Wrench,Flower2,Check,Smartphone} from '
 import {Navbar} from './navigation';
 import {Hero} from './cinema-hero';
 import {AppLink} from './download-dialog';
-import {Footer} from './landing';
+import {Footer} from './footer';
 import {pick} from '@/lib/orderup/locale';
 
-export function AppScreenshot({screen,ar=false}:{screen:'home'|'services'|'cleaning';ar?:boolean}){
- const names={home:pick(ar,'OrderUp home screen','شاشة OrderUp الرئيسية'),services:pick(ar,'Home service categories in OrderUp','فئات الخدمات المنزلية في OrderUp'),cleaning:pick(ar,'Cleaning services available in OrderUp','خدمات التنظيف في OrderUp')};
- return <div className="real-app-screen"><Image src={`/screenshots/ios/${screen}.jpeg`} width={589} height={1280} alt={names[screen]} sizes="(max-width:600px) 240px,300px"/></div>;
-}
+import {AppScreenshot} from './app-screenshot';
+export {AppScreenshot} from './app-screenshot';
 
 export function HomeContent({ar}:{ar:boolean}){
  const t=(en:string,arabic:string)=>pick(ar,en,arabic),locale=ar?'ar':'en',download=`/${locale}/download/`;

@@ -9,19 +9,24 @@
   --color-ring: #1e9695;
 }
 :root {
+  --demo-surface: #fff4d9;
+  --demo-border: #e3c87e;
+  --demo-ink: #674d12;
+  --danger: #a12832;
+  --market-radius: 20px;
   --scrollbar-thumb: #829c97;
   --scrollbar-track: #edf6f3;
   --scrollbar-hover: #146e6d;
   --scrollbar-active: #102f31;
   --primary: #1e9695;
   --primary-dark: #146e6d;
-  --primary-light: #d7eeeb;
-  --primary-soft: #edf6f3;
-  --background: #fbfcf9;
-  --text: #102e31;
-  --muted: #647575;
-  --border: #dfe8e5;
-  --dark: #102f31;
+  --primary-light: #cfe8e3;
+  --primary-soft: #eaf4f1;
+  --background: #f6f8f7;
+  --text: #103235;
+  --muted: #53686a;
+  --border: #dce6e3;
+  --dark: #0b2d30;
   --surface: #fff;
 }
 * {

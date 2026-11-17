@@ -2,7 +2,7 @@ import type { NextConfig } from 'next';
 const config: NextConfig = {
  trailingSlash: true,
  skipTrailingSlashRedirect: true,
- images: {unoptimized: true},
+ images: {formats: ['image/avif','image/webp']},
  async redirects() {
   return [{source: '/', destination: '/ar/', permanent: true}];
  },

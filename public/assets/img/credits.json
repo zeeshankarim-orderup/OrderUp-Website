@@ -1,0 +1,48 @@
+{
+ "note": "Credits for the photographs in this folder: photos.mjs credits prints the footer block for the ones the pages use.",
+ "photos": [
+  {
+   "file": "photo-f195846938-500.jpg",
+   "files": [
+    "photo-f195846938-500.jpg"
+   ],
+   "id": "f195846938",
+   "alt": "Jeddah Corniche Photo",
+   "by": "Kolaiel",
+   "licence": "CC0",
+   "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "page": "https://commons.wikimedia.org/wiki/File:Jeddah_Corniche_Photo.jpg",
+   "source": "Wikimedia Commons"
+  },
+  {
+   "file": "photo-f61289940.jpg",
+   "files": [
+    "photo-f61289940-500.jpg",
+    "photo-f61289940-960.jpg",
+    "photo-f61289940.jpg"
+   ],
+   "id": "f61289940",
+   "alt": "Riyadh Skyline showing the King Abdullah Financial District (KAFD) and the famous Kingdom Tower",
+   "by": "B.alotaby",
+   "licence": "CC BY-SA 4.0",
+   "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Riyadh_Skyline_showing_the_King_Abdullah_Financial_District_(KAFD)_and_the_famous_Kingdom_Tower_.jpg",
+   "source": "Wikimedia Commons"
+  },
+  {
+   "file": "photo-f32186083.jpg",
+   "files": [
+    "photo-f32186083-500.jpg",
+    "photo-f32186083-960.jpg",
+    "photo-f32186083.jpg"
+   ],
+   "id": "f32186083",
+   "alt": "Jeddah Corniche (6573472311)",
+   "by": "Sammy Six",
+   "licence": "CC BY 2.0",
+   "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Jeddah_Corniche_(6573472311).jpg",
+   "source": "Wikimedia Commons"
+  }
+ ]
+}
