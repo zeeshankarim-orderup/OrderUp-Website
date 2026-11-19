@@ -5,7 +5,7 @@ export const captainStores = {
 
 export const customerStores = {
  android: 'https://play.google.com/store/apps/details?id=com.orderup.main',
- ios: 'https://apps.apple.com/app/orderup-the-super-app/id6802653554',
+ ios: 'https://apps.apple.com/sa/app/orderup-the-super-app/id6802653554',
 } as const;
 
 export function captainPlatform(userAgent: string, platform = '', maxTouchPoints = 0): keyof typeof captainStores | null {
